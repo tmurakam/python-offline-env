@@ -9,9 +9,11 @@ install_virtualenv() {
 
 if [ python3 ]; then
     echo "Use python3"
+    PYTHON=python3
     VENV="python3 -m venv"
 else
     echo "Use python2"
+    PYTHON=python
     if [ virtualenv ]; then
         VENV=virtualenv
     else
@@ -27,3 +29,15 @@ if [ ! -e $DEST/bin/activate ]; then
     $VENV $DEST
 fi
 . $DEST/bin/activate
+
+# install pip
+PIP_WHL=pip-20.0.2-py2.py3-none-any.whl
+python $PIP_WHL/pip install -U $PIP_WHL
+
+# install setuptools
+pip install -U setuptools*.whl
+
+
+
+
+
