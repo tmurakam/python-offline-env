@@ -37,7 +37,5 @@ python $PIP_WHL/pip install -U $PIP_WHL
 # install setuptools
 pip install -U setuptools*.whl
 
-
-
-
-
+# install packages
+pip install -U files/*.whl files/*.tar.gz
