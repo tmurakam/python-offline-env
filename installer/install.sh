@@ -7,20 +7,19 @@ install_virtualenv() {
     # TODO:
 }
 
-if [ python3 ]; then
+if type python3 >/dev/null 2>&1; then
     echo "Use python3"
     PYTHON=python3
     VENV="python3 -m venv"
 else
     echo "Use python2"
     PYTHON=python
-    if [ virtualenv ]; then
+    if type virtualenv >/dev/null 2>&1; then
         VENV=virtualenv
     else
         install_virtualenv
     fi
 fi
-
 
 # create virtual env and activate
 if [ ! -e $DEST/bin/activate ]; then
