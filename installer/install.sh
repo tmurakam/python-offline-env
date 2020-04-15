@@ -1,6 +1,6 @@
 #!/bin/sh
 
-./create-venv.sh || exit 1
+./create-venv.sh $@ || exit 1
 
 . /opt/python-env/bin/activate || exit 1
 
