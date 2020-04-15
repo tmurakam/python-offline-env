@@ -1,40 +1,16 @@
 #!/bin/sh
 
-DEST=/opt/python-env
+./create-venv.sh || exit 1
 
-install_virtualenv() {
-    echo "install virtualenv"
-    if [ -e /etc/redhat-release ]; then
-        sudo yum install python-virtualenv
-    fi
-    # TODO:
-}
+. /opt/python-env/bin/activate || exit 1
 
-if type python3 >/dev/null 2>&1; then
-    echo "Use python3"
-    PYTHON=python3
-    VENV="python3 -m venv"
-else
-    echo "Use python2"
-    PYTHON=python
-    if type virtualenv >/dev/null 2>&1; then
-        VENV=virtualenv
-    else
-        install_virtualenv
-    fi
-fi
 
-# create virtual env and activate
-if [ ! -e $DEST/bin/activate ]; then
-    sudo mkdir $DEST
-    sudo chown $(id -u):$(id -g) $DEST
-    $VENV $DEST
-fi
-. $DEST/bin/activate
+echo "python = $(which python)"
+echo "pip = $(which pip)"
 
 # install pip
-PIP_WHL=pip-20.0.2-py2.py3-none-any.whl
-python $PIP_WHL/pip install -U $PIP_WHL
+#python $PIP_WHL/pip install -U pip*.whl
+pip install -U pip*.whl
 
 # install setuptools
 pip install -U setuptools*.whl
