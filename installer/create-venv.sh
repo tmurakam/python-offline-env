@@ -19,7 +19,7 @@ elif [ -e /usr/bin/virtualenv ]; then
     echo "Use /usr/bin/virtualenv"
     VENV=/usr/bin/virtualenv
 elif [ -e /etc/redhat-release ]; then
-    sudo yum install python-virtualenv || exit 1
+    install_virtualenv
     VENV=/usr/bin/virtualenv
 fi
 
