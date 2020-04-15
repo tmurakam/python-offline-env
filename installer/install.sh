@@ -4,6 +4,9 @@ DEST=/opt/python-env
 
 install_virtualenv() {
     echo "install virtualenv"
+    if [ -e /etc/redhat-release ]; then
+        sudo yum install python-virtualenv
+    fi
     # TODO:
 }
 
