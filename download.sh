@@ -5,16 +5,16 @@
 . /opt/python-env/bin/activate || exit 1
 
 # cleanup
-/bin/rm installer/*.whl installer/files/*.gz installer/files/*.whl
+/bin/rm installer/pip/* installer/files/*
 
 # Update pip / setuptools
 pip install -U pip
 pip install -U setuptools
 
 # Download pip / setuptools
-pip download pip
-pip download setuptools
-mv pip*.whl setuptools*.whl installer/
+#pip download -d installer pip setuptools
+pip download -d installer/pip --no-binary :all: pip setuptools
 
 # Download required packages
-pip download -r requirements.txt -d installer/files
+pip download -d installer/files -r requirements.txt --no-binary :all: 
+

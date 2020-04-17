@@ -10,10 +10,13 @@ echo "pip = $(which pip)"
 
 # install pip
 #python $PIP_WHL/pip install -U pip*.whl
-pip install -U pip*.whl
+#pip install -U pip*.whl
+pip install -U pip/pip*
 
 # install setuptools
-pip install -U setuptools*.whl
+#pip install -U setuptools*.whl
+pip install -U pip/setuptools*
 
 # install packages
-pip install -U files/*.whl files/*.tar.gz
+pip install -U files/*.tar.gz
+
