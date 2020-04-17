@@ -1,9 +1,12 @@
 #!/bin/sh
 
+export VENV_DIR=${VENV_DIR:-/opt/python-env}
+
+# create venv
 ./create-venv.sh $@ || exit 1
 
-. /opt/python-env/bin/activate || exit 1
-
+# activate venv
+. $VENV_DIR/bin/activate || exit 1
 
 echo "python = $(which python)"
 echo "pip = $(which pip)"

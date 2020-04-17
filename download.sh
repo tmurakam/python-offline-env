@@ -1,8 +1,10 @@
 #!/bin/sh
 
+export VENV_DIR=$PWD/tmp
+
 ./installer/create-venv.sh $@ || exit 1
 
-. /opt/python-env/bin/activate || exit 1
+. $VENV_DIR/bin/activate || exit 1
 
 # cleanup
 /bin/rm installer/pip/* installer/files/*

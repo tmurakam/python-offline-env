@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEST=/opt/python-env
+VENV_DIR=${VENV_DIR:-/opt/python-env}
 
 install_virtualenv() {
     echo "install virtualenv"
@@ -24,9 +24,11 @@ elif [ -e /etc/redhat-release ]; then
 fi
 
 # create virtual env
-if [ ! -e $DEST/bin/activate ]; then
-    echo "Create virtual env in $DEST"
-    sudo mkdir $DEST
-    sudo chown $(id -u):$(id -g) $DEST
-    $VENV $DEST
+if [ ! -e $VENV_DIR/bin/activate ]; then
+    echo "Create virtual env in $VENV_DIR"
+    sudo mkdir $VENV_DIR
+    sudo chown $(id -u):$(id -g) $VENV_DIR
+    $VENV $VENV_DIR
+else
+    echo "Virtual env already exists, do nothing."
 fi
