@@ -26,3 +26,5 @@ $PIP download -d installer/pip --no-binary :all: pip setuptools
 # Download required packages
 #$PIP download -d installer/files -r requirements.txt --no-binary :all:
 $PIP download -d installer/files -r requirements.txt
+
+cp requirements.txt installer/

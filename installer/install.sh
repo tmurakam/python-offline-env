@@ -11,16 +11,14 @@ export VENV_DIR=${VENV_DIR:-/opt/python-env}
 echo "python = $(which python)"
 echo "pip = $(which pip)"
 
-INSTALL="pip install -U --disable-pip-version-check --find-links ./files -vvv"
+INSTALL="pip install -U --no-index --disable-pip-version-check --find-links=./files" # -v
 
 # install pip
 #python $PIP_WHL/pip install -U pip*.whl
-#$INSTALL pip*.whl
 $INSTALL pip/pip*
 
 # install setuptools
-#pip install -U setuptools*.whl
 $INSTALL pip/setuptools*
 
 # install packages
-$INSTALL files/*.tar.gz files/*.whl
+$INSTALL -r ./requirements.txt
