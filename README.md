@@ -8,18 +8,13 @@ Python のオフライン環境・インストーラです。
 
 以下のいずれか
 
-* Python 3 + 開発環境
-* Python 2 + virtualenv + 開発環境
+* Python 3 + pip3 + venv
+* Python 2 + pip + virtualenv
 
 両方が存在する場合は、Python 3 が優先されます。
 
 強制的に Python 2 を使用する場合は、download.sh および install.sh の引数に
 "-2" を指定してください。
-
-開発環境としては、Python のヘッダファイルとコンパイラなどが必要です。
-
-RHEL 7 / CentOS 7 の場合は python3-devel, python-devel などをインストールしてください。
-
 
 ## インストーラの生成
 

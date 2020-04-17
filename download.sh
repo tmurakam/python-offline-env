@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export VENV_DIR=$PWD/tmp
 
@@ -6,17 +6,23 @@ export VENV_DIR=$PWD/tmp
 
 . $VENV_DIR/bin/activate || exit 1
 
+if [ ! "$1" == "-2" ] && type pip3 >/dev/null 2>&1; then
+    PIP=pip3
+else
+    PIP=pip
+fi
+
 # cleanup
 /bin/rm installer/pip/* installer/files/*
 
 # Update pip / setuptools
-pip install -U pip
-pip install -U setuptools
+$PIP install -U pip
+$PIP install -U setuptools
 
 # Download pip / setuptools
-#pip download -d installer pip setuptools
-pip download -d installer/pip --no-binary :all: pip setuptools
+#$PIP download -d installer pip setuptools
+$PIP download -d installer/pip --no-binary :all: pip setuptools
 
 # Download required packages
-#pip download -d installer/files -r requirements.txt --no-binary :all:
-pip download -d installer/files -r requirements.txt
+#$PIP download -d installer/files -r requirements.txt --no-binary :all:
+$PIP download -d installer/files -r requirements.txt
