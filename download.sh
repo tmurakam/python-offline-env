@@ -18,5 +18,5 @@ pip install -U setuptools
 pip download -d installer/pip --no-binary :all: pip setuptools
 
 # Download required packages
-pip download -d installer/files -r requirements.txt --no-binary :all: 
-
+#pip download -d installer/files -r requirements.txt --no-binary :all:
+pip download -d installer/files -r requirements.txt

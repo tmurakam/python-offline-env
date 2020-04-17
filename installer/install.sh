@@ -23,4 +23,4 @@ $INSTALL pip/pip*
 $INSTALL pip/setuptools*
 
 # install packages
-$INSTALL files/*.tar.gz
+$INSTALL files/*.tar.gz files/*.whl
