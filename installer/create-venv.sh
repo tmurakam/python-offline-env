@@ -26,8 +26,7 @@ fi
 # create virtual env
 if [ ! -e $VENV_DIR/bin/activate ]; then
     echo "Create virtual env in $VENV_DIR"
-    sudo mkdir $VENV_DIR
-    sudo chown $(id -u):$(id -g) $VENV_DIR
+    mkdir $VENV_DIR || (sudo mkdir $VENV_DIR && sudo chown $(id -u):$(id -g) $VENV_DIR) || exit 1
     $VENV $VENV_DIR
 else
     echo "Virtual env already exists, do nothing."

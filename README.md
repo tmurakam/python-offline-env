@@ -20,7 +20,7 @@ Python のオフライン環境・インストーラです。
 
 requirements.txt に必要なパッケージ一覧を記述してください。
 
-download.sh を実行すると、/opt/python-env に仮想環境が生成され、これを使用して
+download.sh を実行すると、テンポラリな仮想環境が生成され、これを使用して
 パッケージ(pip, setuptools, requirements.txt に記載されたパッケージ)が
 installer ディレクトリ以下に生成されます。
 
@@ -34,5 +34,10 @@ installer 以下のディレクトリをオフライン環境にコピーし、i
 本ディレクトリに PATH を通すか、/opt/python-bin/env/activate を source
 して使用してください。
 
+## 注意事項
 
+生成された installer は、インストーラを生成した OS(Distribution) および
+Python バージョンに依存します。
 
+このため、ターゲットマシンと同じ OS / Python バージョンを使用してインストーラ
+を生成してください。

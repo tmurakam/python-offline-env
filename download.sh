@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export VENV_DIR=$PWD/tmp
+/bin/rm -rf $VENV_DIR
 
 ./installer/create-venv.sh $@ || exit 1
 
