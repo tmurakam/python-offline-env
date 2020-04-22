@@ -35,5 +35,5 @@ fi
 
 # create virtual env
 echo "Create virtual env in $VENV_DIR"
-mkdir $VENV_DIR || (sudo mkdir $VENV_DIR && sudo chown $(id -u):$(id -g) $VENV_DIR) || exit 1
+mkdir $VENV_DIR >/dev/null 2>&1 || (sudo mkdir $VENV_DIR && sudo chown $(id -u):$(id -g) $VENV_DIR) || exit 1
 $VENV $VENV_DIR

@@ -21,4 +21,4 @@ $INSTALL pip
 $INSTALL setuptools
 
 # install packages
-$INSTALL -r ./requirements.txt
+$INSTALL -r ./requirements.txt -v
