@@ -8,13 +8,14 @@ Python のオフライン環境・インストーラです。
 
 以下のいずれか
 
-* Python 3 + pip3 + venv
 * Python 2 + pip + virtualenv
+* Python 3 + pip3 + venv
 
-両方が存在する場合は、Python 3 が優先されます。
+両方が存在する場合は、virtualenv が使用されます。
 
-強制的に Python 2 を使用する場合は、download.sh および install.sh の引数に
-"-2" を指定してください。
+強制的に Python3 を使用する場合は、download.sh および install.sh の引数に "-3"
+を指定してください。
+
 
 ## インストーラの生成
 

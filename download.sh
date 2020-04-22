@@ -7,11 +7,7 @@ export VENV_DIR=$PWD/tmp
 
 . $VENV_DIR/bin/activate || exit 1
 
-if [ ! "$1" == "-2" ] && type pip3 >/dev/null 2>&1; then
-    PIP=pip3
-else
-    PIP=pip
-fi
+PIP=pip
 
 # cleanup
 /bin/rm installer/cache/*

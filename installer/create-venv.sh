@@ -12,22 +12,28 @@ install_virtualenv() {
     fi
 }
 
-if [ ! "$1" == "-2" ] && type /usr/bin/python3 >/dev/null 2>&1; then
+if [ -e $VENV_DIR/bin/activate ]; then
+    echo "Virtual env already exists, do nothing."
+    exit 0
+fi
+
+# check virtualenv
+if [ "$1" == "-3" ]; then
     echo "Use /usr/bin/python3 and venv"
     VENV="/usr/bin/python3 -m venv"
-elif [ -e /usr/bin/virtualenv ]; then
+elif type /usr/bin/virtualenv >/dev/null 2>&1; then
     echo "Use /usr/bin/virtualenv"
     VENV=/usr/bin/virtualenv
-elif [ -e /etc/redhat-release ]; then
+elif type /usr/bin/python3 >/dev/null 2>&1; then
+    echo "Use /usr/bin/python3 and venv"
+    VENV="/usr/bin/python3 -m venv"
+else
     install_virtualenv
     VENV=/usr/bin/virtualenv
 fi
 
+
 # create virtual env
-if [ ! -e $VENV_DIR/bin/activate ]; then
-    echo "Create virtual env in $VENV_DIR"
-    mkdir $VENV_DIR || (sudo mkdir $VENV_DIR && sudo chown $(id -u):$(id -g) $VENV_DIR) || exit 1
-    $VENV $VENV_DIR
-else
-    echo "Virtual env already exists, do nothing."
-fi
+echo "Create virtual env in $VENV_DIR"
+mkdir $VENV_DIR || (sudo mkdir $VENV_DIR && sudo chown $(id -u):$(id -g) $VENV_DIR) || exit 1
+$VENV $VENV_DIR
