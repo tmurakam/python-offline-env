@@ -1,44 +1,37 @@
 # Python offline env / installer
 
-Python のオフライン環境・インストーラです。
+An offline environment/installer for Python.
 
-完全オフラインな環境にパッケージ(Ansibleなど)をセットアップするためのものです。
+It is for setting up packages (such as Ansible) in a completely offline environment.
 
-## 必要環境
+## Requirements
 
-以下のいずれか
+You need one of the following.
 
 * Python 2 + pip + virtualenv
 * Python 3 + pip3 + venv
 
-両方が存在する場合は、virtualenv が使用されます。
+If both are present, virtualenv is used.
 
-強制的に Python3 を使用する場合は、download.sh および install.sh の引数に "-3"
-を指定してください。
+If you want to force to use of Python 3, specify "-3" as an argument to download.sh and install.sh.
 
+## Generating an installer.
 
-## インストーラの生成
+Add needed packages to the `requirements.txt`.
 
-requirements.txt に必要なパッケージ一覧を記述してください。
+Run `download.sh` to generate the installer.
+Running `download.sh` will create a temporary virtual environment that can be used to create package (pip, setuptools, and packages described in requirements.txt) are generated under the installer directory.
 
-download.sh を実行すると、テンポラリな仮想環境が生成され、これを使用して
-パッケージ(pip, setuptools, requirements.txt に記載されたパッケージ)が
-installer ディレクトリ以下に生成されます。
+## Installation.
 
-## インストール
+Copy the `installer` directories to the offline target machine, and you can run `install.sh` to perform the installation.
 
-installer 以下のディレクトリをオフライン環境にコピーし、install.sh を実行
-することでインストールが実行されます。
+The binaries are installed in /opt/python-env/bin/ directory.
 
-バイナリは /opt/python-env/bin/ にインストールされます。
+You can use the environment to add this directory to your PATH environment variable, or `source` the `/opt/python-bin/env/activate` script.
 
-本ディレクトリに PATH を通すか、/opt/python-bin/env/activate を source
-して使用してください。
+## Notes.
 
-## 注意事項
+The generated installer depends on the OS (distribution) and Python version on which generate the installer.
 
-生成された installer は、インストーラを生成した OS(Distribution) および
-Python バージョンに依存します。
-
-このため、ターゲットマシンと同じ OS / Python バージョンを使用してインストーラ
-を生成してください。
+Therefore, use the same OS/Python version of the target machine to generate the installer.
