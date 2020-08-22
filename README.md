@@ -11,9 +11,9 @@ You need one of the following.
 * Python 2 + pip + virtualenv
 * Python 3 + pip3 + venv
 
-If both are present, virtualenv is used.
+If both are present, Python 3 + venv is used.
 
-If you want to force to use of Python 3, specify "-3" as an argument to download.sh and install.sh.
+If you want to force to use of Python 2 + virtualenv, specify "-2" as an argument to download.sh and install.sh.
 
 ## Generating an installer.
 
