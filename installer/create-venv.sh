@@ -3,8 +3,8 @@
 VENV_DIR=${VENV_DIR:-/opt/python-env}
 
 install_virtualenv() {
-    echo "install virtualenv"
     if [ -e /etc/redhat-release ]; then
+        echo "Trying to install virtualenv"
         sudo yum install python-virtualenv
     else
         echo "You need install virtualenv"
@@ -19,14 +19,18 @@ fi
 
 # check virtualenv
 if [ "$1" == "-3" ]; then
-    echo "Use /usr/bin/python3 and venv"
-    VENV="/usr/bin/python3 -m venv"
-elif type /usr/bin/virtualenv >/dev/null 2>&1; then
-    echo "Use /usr/bin/virtualenv"
-    VENV=/usr/bin/virtualenv
-elif type /usr/bin/python3 >/dev/null 2>&1; then
-    echo "Use /usr/bin/python3 and venv"
-    VENV="/usr/bin/python3 -m venv"
+    if ! command -v python3 >/dev/null 2>&1; then
+        echo "No python3 found"
+        exit 1
+    fi
+    echo "Use python3 and venv"
+    VENV="$(command -v python3) -m venv"
+elif command -v virtualenv >/dev/null 2>&1; then
+    echo "Use virtualenv"
+    VENV=$(command -v virtualenv)
+elif command -v python3 >/dev/null 2>&1; then
+    echo "Use python3 and venv"
+    VENV="$(command -v python3) -m venv"
 else
     install_virtualenv
     VENV=/usr/bin/virtualenv
