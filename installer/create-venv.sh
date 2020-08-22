@@ -1,7 +1,5 @@
 #!/bin/bash
 
-VENV_DIR=${VENV_DIR:-/opt/python-env}
-
 install_virtualenv() {
     if [ -e /etc/redhat-release ]; then
         echo "Trying to install virtualenv"
@@ -12,13 +10,20 @@ install_virtualenv() {
     fi
 }
 
+if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 <venv_dir> [-2]"
+    exit 1
+fi
+
+VENV_DIR=$1
+
 if [ -e $VENV_DIR/bin/activate ]; then
     echo "Virtual env already exists, do nothing."
     exit 0
 fi
 
 # check virtualenv
-if [ "$1" == "-2" ]; then
+if [[ "$2" == "-2" ]]; then
     # force use virtualenv and python2
     if command -v virtualenv >/dev/null 2>&1; then
         echo "Use virtualenv"
@@ -28,8 +33,8 @@ if [ "$1" == "-2" ]; then
         VENV=$(command -v virtualenv)
     fi
 elif ! command -v python3 >/dev/null 2>&1; then
-        echo "No python3 found"
-        exit 1
+    echo "No python3 found"
+    exit 1
 else
     echo "Use python3 and venv"
     VENV="$(command -v python3) -m venv"
