@@ -6,27 +6,46 @@ It is for setting up packages (such as Ansible) in a completely offline environm
 
 ## Requirements
 
-You need one of the following.
+You need one of the following on both target machine and generator machine which used to generate offline installer.
 
 * Python 2 + pip + virtualenv
 * Python 3 + pip3 + venv
 
-If both are present, virtualenv is used.
+If both are present, Python 3 + venv is used.
 
-If you want to force to use of Python 3, specify "-3" as an argument to download.sh and install.sh.
+If you want to force to use of Python 2 + virtualenv, specify "-2" as an argument to download.sh and install.sh.
+
+### For RHEL 7 / CentOS 7
+
+Install python3:
+
+    $ sudo yum install python3
+
+Or install virtualenv for python 2:
+
+    $ sudo yum install python-virtualenv    
 
 ## Generating an installer.
 
 Add needed packages to the `requirements.txt`.
 
-Run `download.sh` to generate the installer.
+Run `download.sh` to generate the installer on the generator machine.
+
+For python 3 + venv
+
+    $ ./download.sh
+
+For python 2 + virtualenv
+
+    $ ./download.sh -2
+
 Running `download.sh` will create a temporary virtual environment that can be used to create package (pip, setuptools, and packages described in requirements.txt) are generated under the installer directory.
 
 ## Installation.
 
-Copy the `installer` directories to the offline target machine, and you can run `install.sh` to perform the installation.
+Copy the `installer` directories to the offline target machine, and you can run `sudo install.sh` to perform the installation.
 
-The binaries are installed in /opt/python-env/bin/ directory.
+The binaries are installed in `/opt/python-env/bin/` directory.
 
 You can use the environment to add this directory to your PATH environment variable, or `source` the `/opt/python-bin/env/activate` script.
 

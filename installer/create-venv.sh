@@ -1,10 +1,8 @@
 #!/bin/bash
 
-VENV_DIR=${VENV_DIR:-/opt/python-env}
-
 install_virtualenv() {
-    echo "install virtualenv"
     if [ -e /etc/redhat-release ]; then
+        echo "Trying to install virtualenv"
         sudo yum install python-virtualenv
     else
         echo "You need install virtualenv"
@@ -12,26 +10,35 @@ install_virtualenv() {
     fi
 }
 
+if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 <venv_dir> [-2]"
+    exit 1
+fi
+
+VENV_DIR=$1
+
 if [ -e $VENV_DIR/bin/activate ]; then
     echo "Virtual env already exists, do nothing."
     exit 0
 fi
 
 # check virtualenv
-if [ "$1" == "-3" ]; then
-    echo "Use /usr/bin/python3 and venv"
-    VENV="/usr/bin/python3 -m venv"
-elif type /usr/bin/virtualenv >/dev/null 2>&1; then
-    echo "Use /usr/bin/virtualenv"
-    VENV=/usr/bin/virtualenv
-elif type /usr/bin/python3 >/dev/null 2>&1; then
-    echo "Use /usr/bin/python3 and venv"
-    VENV="/usr/bin/python3 -m venv"
+if [[ "$2" == "-2" ]]; then
+    # force use virtualenv and python2
+    if command -v virtualenv >/dev/null 2>&1; then
+        echo "Use python2 + virtualenv"
+        VENV=$(command -v virtualenv)
+    else
+        install_virtualenv
+        VENV=$(command -v virtualenv)
+    fi
+elif ! command -v python3 >/dev/null 2>&1; then
+    echo "No python3 found"
+    exit 1
 else
-    install_virtualenv
-    VENV=/usr/bin/virtualenv
+    echo "Use python3 and venv"
+    VENV="$(command -v python3) -m venv"
 fi
-
 
 # create virtual env
 echo "Create virtual env in $VENV_DIR"
