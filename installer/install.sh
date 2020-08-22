@@ -17,14 +17,12 @@ echo "pip = $(command -v pip)"
 
 INSTALL="pip install -U --no-index --disable-pip-version-check --find-links=./cache" # -v
 
-if [ ! -e ./cache/.python2 ]; then  # Do not update pip / setuptools for python 2
-    # update pip
-    #python $PIP_WHL/pip install -U pip*.whl
-    $INSTALL pip
+# update pip
+#python $PIP_WHL/pip install -U pip*.whl
+$INSTALL pip
 
-    # update setuptools
-    $INSTALL setuptools
-fi
+# update setuptools
+$INSTALL setuptools
 
 # install packages
 $INSTALL -r ./requirements.txt -v
