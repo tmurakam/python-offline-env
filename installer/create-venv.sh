@@ -26,7 +26,7 @@ fi
 if [[ "$2" == "-2" ]]; then
     # force use virtualenv and python2
     if command -v virtualenv >/dev/null 2>&1; then
-        echo "Use virtualenv"
+        echo "Use python2 + virtualenv"
         VENV=$(command -v virtualenv)
     else
         install_virtualenv

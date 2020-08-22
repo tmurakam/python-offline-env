@@ -12,13 +12,18 @@ PIP=pip
 # cleanup
 /bin/rm installer/cache/*
 
-# Update pip / setuptools
-$PIP install -U pip
-$PIP install -U setuptools
+if [ -e $VENV_DIR/bin/python2 ]; then
+    # It seems that the latest pip does not work for python 2...
+    echo "Do not upgrade pip / setuptools for python 2"
+else
+    # Update pip / setuptools
+    $PIP install -U pip
+    $PIP install -U setuptools
 
-# Download pip / setuptools
-#$PIP download -d installer pip setuptools
-$PIP download -d installer/cache --no-binary :all: pip setuptools
+    # Download pip / setuptools
+    #$PIP download -d installer pip setuptools
+    $PIP download -d installer/cache --no-binary :all: pip setuptools
+fi
 
 # Download required packages
 #$PIP download -d installer/cache -r requirements.txt --no-binary :all:
