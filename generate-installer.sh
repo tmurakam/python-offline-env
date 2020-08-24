@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Generate installer
+#
+
 export VENV_DIR=$PWD/tmp
 /bin/rm -rf $VENV_DIR
 
@@ -34,3 +38,8 @@ $PIP download -d installer/cache --no-binary :all: $PIP_PKG setuptools
 $PIP download -d installer/cache -r requirements.txt
 
 cp requirements.txt installer/
+
+TARBALL=python-offline-env-installer.tar.gz
+tar cvzf $TARBALL installer/
+
+echo "==> Done, $TARBALL generated."
