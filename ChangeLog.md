@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 2020/08/24 : v1.0.2
+
+- Generate installer tarball
+- Rename download.sh -> generate-installer.sh
+
 ## 2020/08/22 : v1.0.1
 
 - Default to use python 3
