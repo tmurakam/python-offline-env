@@ -39,4 +39,7 @@ $PIP download -d installer/cache -r requirements.txt
 
 cp requirements.txt installer/
 
-tar cvzf python-offline-env-installer.tar.gz installer/
+TARBALL=python-offline-env-installer.tar.gz
+tar cvzf $TARBALL installer/
+
+echo "==> Done, $TARBALL generated."

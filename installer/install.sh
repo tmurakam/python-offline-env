@@ -18,11 +18,16 @@ echo "pip = $(command -v pip)"
 INSTALL="pip install -U --no-index --disable-pip-version-check --find-links=./cache" # -v
 
 # update pip
+echo "==> Install pip"
 #python $PIP_WHL/pip install -U pip*.whl
 $INSTALL pip
 
 # update setuptools
+echo "==> Install setuptools"
 $INSTALL setuptools
 
 # install packages
+echo "==> Install requirements"
 $INSTALL -r ./requirements.txt -v
+
+echo "==> Installed in $VENV_DIR"
