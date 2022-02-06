@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 2022/xx/xx
+
+- Remove Python 2 support
+
 ## 2020/08/24 : v1.0.2
 
 - Generate installer tarball
